@@ -1,4 +1,5 @@
+var MetricSchema = require('./Metric');
 
-module.exports = function (conn) {
-    this.Metric = require('./Metric')(conn);
+exports.Metric = function (conn) {
+    return conn.model('Metric', MetricSchema);
 };

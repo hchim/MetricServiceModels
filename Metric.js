@@ -38,6 +38,4 @@ metricSchema.set('autoIndex', true);
 
 // methods
 
-module.exports = function (conn) {
-    return conn.model('Metric', metricSchema)
-};
+module.exports = metricSchema;
