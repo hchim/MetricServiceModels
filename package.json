@@ -1,0 +1,14 @@
+{
+  "name": "metricservicemodels",
+  "version": "1.0.0",
+  "description": "Metric service db models",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hui Chen",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "~4.6.6"
+  }
+}
