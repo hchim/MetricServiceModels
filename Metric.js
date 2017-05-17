@@ -38,8 +38,8 @@ metricSchema.set('autoIndex', true);
 
 // methods
 
-metricSchema.methods.distinctMetrics = function(query, callback) {
-    this.model.find(query).distinct('tag', callback);
+metricSchema.statics.distinctMetrics = function(query, callback) {
+    this.find(query).distinct('tag', callback);
 };
 
 module.exports = metricSchema;
