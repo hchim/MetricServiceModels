@@ -42,4 +42,19 @@ metricSchema.statics.distinctMetrics = function(query, callback) {
     this.find(query).distinct('tag', callback);
 };
 
+metricSchema.statics.searchMetrics = function(query, callback, page, numPerPage) {
+    if (!numPerPage) {
+        numPerPage = 10;
+    }
+    if (!page) {
+        page = 0;
+    }
+
+    this.find(query)
+        .limit(numPerPage)
+        .skip(numPerPage * page)
+        .sort({createTime: -1})
+        .exec(callback);
+};
+
 module.exports = metricSchema;
