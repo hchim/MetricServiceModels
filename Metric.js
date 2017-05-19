@@ -1,4 +1,6 @@
 var mongoose = require("mongoose");
+var mapFuns = require('./MapFunctions');
+var reduceFuns = require('./ReduceFunctions');
 
 var metricSchema = mongoose.Schema({
     tag: {
@@ -55,6 +57,23 @@ metricSchema.statics.searchMetrics = function(query, callback, page, numPerPage)
         .skip(numPerPage * page)
         .sort({createTime: -1})
         .exec(callback);
+};
+
+/**
+ * MapReduce query on metrics collection.
+ * @param query
+ * @param statInterval
+ * @param callback It takes two parameters error and results.
+ * @param map map function
+ * @param reduce reduce function, default is countMetricReduce
+ */
+metricSchema.statics.mapReduceQuery = function(query, callback, map, reduce) {
+    this.mapReduce({
+        query: query,
+        sort: {createTime: 1},
+        map: map ? map : mapFuns.metric5MMap,
+        reduce: reduce ? reduce : reduceFuns.countMetricReduce,
+    }, callback);
 };
 
 module.exports = metricSchema;
