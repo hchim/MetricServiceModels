@@ -46,5 +46,19 @@ monitorSchema.set('autoIndex', true);
 
 // methods
 
+monitorSchema.statics.searchMonitors = function(query, callback, page, numPerPage) {
+    if (!numPerPage) {
+        numPerPage = 10;
+    }
+    if (!page) {
+        page = 0;
+    }
+
+    this.find(query)
+        .limit(numPerPage)
+        .skip(numPerPage * page)
+        .sort({createTime: -1})
+        .exec(callback);
+};
 
 module.exports = monitorSchema;
