@@ -20,7 +20,7 @@ var taskSchema = mongoose.Schema({
 
 // indexes
 
-taskSchema.index({ startTime: 1});
+taskSchema.index({ nextExecuteTime: 1});
 taskSchema.set('autoIndex', true);
 
 // methods
