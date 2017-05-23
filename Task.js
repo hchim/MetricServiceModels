@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var ObjectId = mongoose.schema.ObjectId;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var taskSchema = mongoose.Schema({
     _monitor: {
