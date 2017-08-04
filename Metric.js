@@ -40,8 +40,17 @@ metricSchema.set('autoIndex', true);
 
 // methods
 
-metricSchema.statics.distinctMetrics = function(query, callback) {
-    this.find(query).distinct('tag', callback);
+metricSchema.statics.distinctMetrics = function(query, callback, page, numPerPage) {
+    if (!numPerPage) {
+        numPerPage = 10;
+    }
+    if (!page) {
+        page = 0;
+    }
+    this.find(query)
+        .limit(numPerPage)
+        .skip(numPerPage * page)
+        .distinct('tag', callback);
 };
 
 metricSchema.statics.searchMetrics = function(query, callback, page, numPerPage) {
