@@ -47,10 +47,12 @@ metricSchema.statics.distinctMetrics = function(query, callback, page, numPerPag
     if (!page) {
         page = 0;
     }
-    this.find(query)
+    var aggregate = this.aggregate();
+    aggregate.match(query)
+        .group({ _id: '$tag'})
         .limit(numPerPage)
         .skip(numPerPage * page)
-        .distinct('tag', callback);
+        .exec(callback);
 };
 
 metricSchema.statics.searchMetrics = function(query, callback, page, numPerPage) {
