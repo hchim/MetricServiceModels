@@ -9,6 +9,6 @@
   "author": "Hui Chen",
   "license": "MIT",
   "dependencies": {
-    "mongoose": "~4.9.8"
+    "mongoose": "^4.11.6"
   }
 }
